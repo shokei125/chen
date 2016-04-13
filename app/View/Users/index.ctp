@@ -5,10 +5,6 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
-			<th><?php echo $this->Paginator->sort('address'); ?></th>
-			<th><?php echo $this->Paginator->sort('phone'); ?></th>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('is_admin'); ?></th>
 			<th><?php echo $this->Paginator->sort('is_student'); ?></th>
 			<th><?php echo $this->Paginator->sort('is_actived'); ?></th>
@@ -22,10 +18,6 @@
 	<tr>
 		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['name']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['address']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['is_admin']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['is_student']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['is_actived']); ?>&nbsp;</td>
@@ -54,6 +46,7 @@
 	?>
 	</div>
 </div>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
@@ -62,3 +55,4 @@
 		<li><?php echo $this->Html->link(__('New Receipt'), array('controller' => 'receipts', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+

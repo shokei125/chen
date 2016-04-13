@@ -31,4 +31,24 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	public $components = array(
+		'Auth' => array(
+			'loginRedirect' => array('controller' => 'events', 'action' => 'index'),//page after login
+			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),//page after logout
+			'loginAction' => array('controller' => 'users', 'action' => 'login'),//page when not login
+			'authenticate' => array(
+				'Form' => array(
+					'fields' => array('username' => 'name','password' => 'password'),
+					'scope' => array('User.is_actived' => 1 )
+				)
+			)
+		)
+	);
+
+	public function beforeFilter(){
+		$this->set('meeting_type',array(1 =>'workshop',2 => 'tutorial',3 => 'technologic'));
+		if($this->Auth->loggedIn()){
+			$this->set('current_user',$this->Auth->user());
+		}
+	}
 }

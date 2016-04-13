@@ -33,7 +33,7 @@
 		</dd>
 		<dt><?php echo __('Type'); ?></dt>
 		<dd>
-			<?php echo h($meeting['Meeting']['type']); ?>
+			<?php echo h($meeting_type[$meeting['Meeting']['type']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Price'); ?></dt>
@@ -58,6 +58,8 @@
 		</dd>
 	</dl>
 </div>
+
+<?php if(isset($current_user) && $current_user['is_admin'] == 1): ?>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
@@ -71,16 +73,15 @@
 		<li><?php echo $this->Html->link(__('New Receipt'), array('controller' => 'receipts', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+<?php endif; ?>
+
 <div class="related">
 	<h3><?php echo __('Related Receipts'); ?></h3>
 	<?php if (!empty($meeting['Receipt'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Meeting Id'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Type'); ?></th>
-		<th><?php echo __('Card Number'); ?></th>
 		<th><?php echo __('Amount'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
@@ -89,17 +90,16 @@
 	<?php foreach ($meeting['Receipt'] as $receipt): ?>
 		<tr>
 			<td><?php echo $receipt['id']; ?></td>
-			<td><?php echo $receipt['meeting_id']; ?></td>
-			<td><?php echo $receipt['user_id']; ?></td>
 			<td><?php echo $receipt['type']; ?></td>
-			<td><?php echo $receipt['card_number']; ?></td>
 			<td><?php echo $receipt['amount']; ?></td>
 			<td><?php echo $receipt['created']; ?></td>
 			<td><?php echo $receipt['modified']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'receipts', 'action' => 'view', $receipt['id'])); ?>
+<?php if(isset($current_user) && $current_user['is_admin'] == 1): ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'receipts', 'action' => 'edit', $receipt['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'receipts', 'action' => 'delete', $receipt['id']), array('confirm' => __('Are you sure you want to delete # %s?', $receipt['id']))); ?>
+<?php endif; ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -108,7 +108,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Receipt'), array('controller' => 'receipts', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('buy meeting'), array('controller' => 'receipts', 'action' => 'add',$meeting['Meeting']['id'])); ?> </li>
 		</ul>
 	</div>
 </div>

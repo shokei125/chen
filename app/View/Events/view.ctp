@@ -38,6 +38,7 @@
 		</dd>
 	</dl>
 </div>
+<?php if(isset($current_user) && $current_user['is_admin'] == 1): ?>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
@@ -49,40 +50,39 @@
 		<li><?php echo $this->Html->link(__('New Conference'), array('controller' => 'conferences', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+<?php endif; ?>
 <div class="related">
 	<h3><?php echo __('Related Conferences'); ?></h3>
 	<?php if (!empty($event['Conference'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Event Id'); ?></th>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Description'); ?></th>
 		<th><?php echo __('Opent At'); ?></th>
-		<th><?php echo __('Registered Attendee'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($event['Conference'] as $conference): ?>
 		<tr>
 			<td><?php echo $conference['id']; ?></td>
-			<td><?php echo $conference['event_id']; ?></td>
 			<td><?php echo $conference['name']; ?></td>
-			<td><?php echo $conference['description']; ?></td>
 			<td><?php echo $conference['opent_at']; ?></td>
-			<td><?php echo $conference['registered_attendee']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'conferences', 'action' => 'view', $conference['id'])); ?>
+<?php if(isset($current_user) && $current_user['is_admin'] == 1): ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'conferences', 'action' => 'edit', $conference['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'conferences', 'action' => 'delete', $conference['id']), array('confirm' => __('Are you sure you want to delete # %s?', $conference['id']))); ?>
+<?php endif; ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
 
+<?php if(isset($current_user) && $current_user['is_admin'] == 1): ?>
 	<div class="actions">
 		<ul>
 			<li><?php echo $this->Html->link(__('New Conference'), array('controller' => 'conferences', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
 </div>
+<?php endif; ?>

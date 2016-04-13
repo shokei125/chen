@@ -17,6 +17,47 @@ class UsersController extends AppController {
  */
 	public $components = array('Paginator', 'Flash', 'Session');
 
+	public function beforeFilter(){
+		parent::beforeFilter();
+		$this->Auth->allow('add','login','logout');
+		if($this->Auth->loggedIn()){
+			if($this->Auth->user('is_admin') != 1){
+				if(in_array($this->action, array('index','edit','delete'))){
+					$this->redirect('/events/index');#if not admin redirect to event`s index
+				}
+			}
+		}
+	}
+	/**
+	 * [login description]
+	 * @return [type] [description]
+	 */
+	public function login(){
+		if($this->Auth->loggedIn()){
+			$this->redirect(array('controller' => 'events','action' => 'index'));
+		}
+		if($this->request->is('POST')){
+			if($this->Auth->login()){
+				$this->redirect(
+					array(
+						'controller' => 'events',
+						'action' => 'index',
+					)
+				);
+			}else{
+				$this->Flash->error('Name or Password is wrong!!');
+			}
+		}
+	}
+
+	/**
+	 * [logout description]
+	 * @return [type] [description]
+	 */
+	public function logout(){
+		$this->redirect($this->Auth->logout());
+	}
+
 /**
  * index method
  *

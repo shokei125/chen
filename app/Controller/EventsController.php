@@ -17,6 +17,14 @@ class EventsController extends AppController {
  */
 	public $components = array('Paginator', 'Flash', 'Session');
 
+	public function beforeFilter(){
+		parent::beforeFilter();
+		if($this->Auth->user('is_admin') != 1){
+			if(in_array($this->action, array('add','edit','delete'))){
+				$this->redirect('/events/index');#if not admin redirect to event`s index
+			}
+		}
+	}
 /**
  * index method
  *

@@ -6,11 +6,9 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('conference_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('speaker'); ?></th>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
 			<th><?php echo $this->Paginator->sort('min_registered'); ?></th>
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
-			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('open_at'); ?></th>
 			<th><?php echo $this->Paginator->sort('close_at'); ?></th>
 			<th><?php echo $this->Paginator->sort('registered_attendee'); ?></th>
@@ -25,11 +23,9 @@
 			<?php echo $this->Html->link($meeting['Conference']['name'], array('controller' => 'conferences', 'action' => 'view', $meeting['Conference']['id'])); ?>
 		</td>
 		<td><?php echo h($meeting['Meeting']['speaker']); ?>&nbsp;</td>
-		<td><?php echo h($meeting['Meeting']['description']); ?>&nbsp;</td>
 		<td><?php echo h($meeting['Meeting']['title']); ?>&nbsp;</td>
 		<td><?php echo h($meeting['Meeting']['min_registered']); ?>&nbsp;</td>
-		<td><?php echo h($meeting['Meeting']['type']); ?>&nbsp;</td>
-		<td><?php echo h($meeting['Meeting']['price']); ?>&nbsp;</td>
+		<td><?php echo h($meeting_type[$meeting['Meeting']['type']]); ?>&nbsp;</td>
 		<td><?php echo h($meeting['Meeting']['open_at']); ?>&nbsp;</td>
 		<td><?php echo h($meeting['Meeting']['close_at']); ?>&nbsp;</td>
 		<td><?php echo h($meeting['Meeting']['registered_attendee']); ?>&nbsp;</td>

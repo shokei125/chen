@@ -7,7 +7,6 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->input('opent_at');
-		echo $this->Form->input('registered_attendee');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

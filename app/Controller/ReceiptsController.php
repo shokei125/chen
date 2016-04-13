@@ -17,6 +17,15 @@ class ReceiptsController extends AppController {
  */
 	public $components = array('Paginator', 'Flash', 'Session');
 
+	public function beforeFilter(){
+		parent::beforeFilter();
+		if($this->Auth->user('is_admin') != 1){
+			if(in_array($this->action, array('index','edit','delete'))){
+				$this->redirect('/conferences/index');#if not admin redirect to event`s index
+			}
+		}
+	}
+
 /**
  * index method
  *
@@ -47,7 +56,7 @@ class ReceiptsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($meeting_id = null) {
 		if ($this->request->is('post')) {
 			$this->Receipt->create();
 			if ($this->Receipt->save($this->request->data)) {
@@ -59,7 +68,7 @@ class ReceiptsController extends AppController {
 		}
 		$meetings = $this->Receipt->Meeting->find('list');
 		$users = $this->Receipt->User->find('list');
-		$this->set(compact('meetings', 'users'));
+		$this->set(compact('meetings', 'users','meeting_id'));
 	}
 
 /**
