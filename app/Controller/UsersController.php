@@ -36,7 +36,8 @@ class UsersController extends AppController {
 		if($this->Auth->loggedIn()){
 			$this->redirect(array('controller' => 'events','action' => 'index'));
 		}
-		if($this->request->is('POST')){
+
+		if($this->request->is('post')){
 			if($this->Auth->login()){
 				$this->redirect(
 					array(
@@ -112,6 +113,7 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			if(empty($this->request->data['User']['password'])) unset($this->request->data['User']['password']);
 			if ($this->User->save($this->request->data)) {
 				$this->Flash->success(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'index'));

@@ -38,16 +38,18 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		//'password' => array(
+		'password' => array(
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
 		//	'userDefined' => array(
 			//	'rule' => array('userDefined'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			//),
-	//	),
+				'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'phone' => array(
 			'phone' => array(
 				'rule' => array('phone'),
@@ -92,5 +94,12 @@ class User extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
+	public function beforeSave($options = array()){
+		if (isset($this->data[$this->alias]['password'])) {
+			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+		}
+		return true;
+	}
 
 }

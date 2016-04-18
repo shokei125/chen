@@ -38,6 +38,7 @@ class AppController extends Controller {
 			'loginAction' => array('controller' => 'users', 'action' => 'login'),//page when not login
 			'authenticate' => array(
 				'Form' => array(
+					'userModel' => 'User',
 					'fields' => array('username' => 'name','password' => 'password'),
 					'scope' => array('User.is_actived' => 1 )
 				)

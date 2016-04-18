@@ -8,7 +8,7 @@
 			<th><?php echo $this->Paginator->sort('speaker'); ?></th>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
 			<th><?php echo $this->Paginator->sort('min_registered'); ?></th>
-			<th><?php echo $this->Paginator->sort('type'); ?></th>
+			<th><?php echo $this->Paginator->sort('type','session'); ?></th>
 			<th><?php echo $this->Paginator->sort('open_at'); ?></th>
 			<th><?php echo $this->Paginator->sort('close_at'); ?></th>
 			<th><?php echo $this->Paginator->sort('registered_attendee'); ?></th>

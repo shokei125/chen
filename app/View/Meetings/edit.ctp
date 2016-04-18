@@ -9,7 +9,7 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('title');
 		echo $this->Form->input('min_registered');
-		echo $this->Form->input('type',array('type' =>'radio','options' => $meeting_type,'value' => 1));
+		echo $this->Form->input('type',array('legend' =>'session','type' =>'radio','options' => $meeting_type,'value' => 1));
 		echo $this->Form->input('price');
 		echo $this->Form->input('open_at');
 		echo $this->Form->input('close_at');

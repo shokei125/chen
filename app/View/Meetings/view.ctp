@@ -31,7 +31,7 @@
 			<?php echo h($meeting['Meeting']['min_registered']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Type'); ?></dt>
+		<dt><?php echo __('Session'); ?></dt>
 		<dd>
 			<?php echo h($meeting_type[$meeting['Meeting']['type']]); ?>
 			&nbsp;
