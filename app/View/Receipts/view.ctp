@@ -49,7 +49,7 @@
 		<li><?php echo $this->Html->link(__('Edit Receipt'), array('action' => 'edit', $receipt['Receipt']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Receipt'), array('action' => 'delete', $receipt['Receipt']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $receipt['Receipt']['id']))); ?> </li>
 		<li><?php echo $this->Html->link(__('List Receipts'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Receipt'), array('action' => 'add')); ?> </li>
+		<!-- <li><?php echo $this->Html->link(__('New Receipt'), array('action' => 'add')); ?> </li> -->
 		<li><?php echo $this->Html->link(__('List Meetings'), array('controller' => 'meetings', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Meeting'), array('controller' => 'meetings', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>

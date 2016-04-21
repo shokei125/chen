@@ -9,9 +9,9 @@
 		echo $this->Form->input('address');
 		echo $this->Form->input('phone');
 		echo $this->Form->input('email');
-		echo $this->Form->input('is_admin');
-		echo $this->Form->input('is_student');
-		echo $this->Form->input('is_actived');
+		echo $this->Form->input('is_admin',array('type' => 'radio','options' => array('1' => 'yes','-1' => 'no'),'default' => -1));
+		echo $this->Form->input('is_student',array('type' => 'radio','options' => array('1' => 'yes','-1' => 'no'),'default' => -1));
+		echo $this->Form->input('is_actived',array('type' => 'radio','options' => array('1' => 'yes','-1' => 'no'),'default' => -1));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

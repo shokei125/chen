@@ -70,12 +70,18 @@
 		<li><?php echo $this->Html->link(__('List Conferences'), array('controller' => 'conferences', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Conference'), array('controller' => 'conferences', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Receipts'), array('controller' => 'receipts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Receipt'), array('controller' => 'receipts', 'action' => 'add')); ?> </li>
+		<!-- <li><?php echo $this->Html->link(__('New Receipt'), array('controller' => 'receipts', 'action' => 'add')); ?> </li> -->
 	</ul>
 </div>
 <?php endif; ?>
 
-<div class="related">
+<div class="actions">
+	<ul>
+		<li><?php echo $this->Html->link(__('buy meeting'), array('controller' => 'receipts', 'action' => 'add',$meeting['Meeting']['id'])); ?> </li>
+	</ul>
+</div>
+
+<!-- <div class="related">
 	<h3><?php echo __('Related Receipts'); ?></h3>
 	<?php if (!empty($meeting['Receipt'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
@@ -106,9 +112,5 @@
 	</table>
 <?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('buy meeting'), array('controller' => 'receipts', 'action' => 'add',$meeting['Meeting']['id'])); ?> </li>
-		</ul>
-	</div>
-</div>
+
+</div> -->

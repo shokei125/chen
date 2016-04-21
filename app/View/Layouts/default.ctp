@@ -21,6 +21,7 @@
 	<title>
 		<?php echo $this->fetch('title'); ?>
 	</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -35,6 +36,10 @@
 	<div id="container">
 		<div id="header">
 <?php if(isset($current_user)): ?>
+	<?php if($current_user['is_admin'] == 1): ?>
+		<?php echo $this->Html->link('users',array('controller' => 'users','action' => 'index')); ?>
+	<?php endif; ?>
+	<?php echo $this->Html->link('profile',array('controller' => 'users','action' => 'view',$current_user['id'])); ?>
 	<?php echo $this->Html->link('logout',array('controller' => 'users','action' => 'logout')); ?>
 <?php endif; ?>
 		</div>

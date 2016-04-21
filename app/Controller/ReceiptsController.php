@@ -57,18 +57,35 @@ class ReceiptsController extends AppController {
  * @return void
  */
 	public function add($meeting_id = null) {
+		$user_id = $this->Auth->user('id');
+		$options = array(
+			'conditions' => array(
+				'user_id' => $user_id,
+				'meeting_id' => $meeting_id
+			)
+		);
+		$list = $this->Receipt->find('first',$options);
+		#bought
+		$buy_flag = $list ? true : false;
+		if($buy_flag) $this->Flash->error(_('You have bought this meeting!!'));
 		if ($this->request->is('post')) {
 			$this->Receipt->create();
 			if ($this->Receipt->save($this->request->data)) {
+				#count up meeting Registered Attendee
+				$this->loadModel('Meeting');
+				$this->Meeting->recursive = -1;
+				$fields = array('Meeting.registered_attendee' => 'Meeting.registered_attendee + 1');
+				$conditions = array('Meeting.id' => $meeting_id);
+				$this->Meeting->updateAll($fields,$conditions);
 				$this->Flash->success(__('The receipt has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Flash->error(__('The receipt could not be saved. Please, try again.'));
 			}
 		}
-		$meetings = $this->Receipt->Meeting->find('list');
+		#$meetings = $this->Receipt->Meeting->find('list');
 		$users = $this->Receipt->User->find('list');
-		$this->set(compact('meetings', 'users','meeting_id'));
+		$this->set(compact('meetings', 'users','meeting_id','buy_flag'));
 	}
 
 /**
